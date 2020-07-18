@@ -7,11 +7,11 @@ namespace DoctrineMigrations;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
-final class Version20200718200550 extends AbstractMigration
+final class Version20200718212329 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Create pins table';
+        return 'Add created_at and updated_at fields to pins table';
     }
 
     public function up(Schema $schema): void
@@ -21,7 +21,7 @@ final class Version20200718200550 extends AbstractMigration
             'Migration can only be executed safely on \'mysql\'.'
         );
 
-        $this->addSql('CREATE TABLE pins (id INT AUTO_INCREMENT NOT NULL, title VARCHAR(255) NOT NULL, description LONGTEXT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE pins ADD created_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, ADD updated_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL');
     }
 
     public function down(Schema $schema): void
@@ -31,6 +31,6 @@ final class Version20200718200550 extends AbstractMigration
             'Migration can only be executed safely on \'mysql\'.'
         );
 
-        $this->addSql('DROP TABLE pins');
+        $this->addSql('ALTER TABLE pins DROP created_at, DROP updated_at');
     }
 }
