@@ -20,17 +20,17 @@ class Pin
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private int $id;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private string $title;
+    private $title;
 
     /**
      * @ORM\Column(type="text")
      */
-    private string $description;
+    private $description;
 
     public function getId(): ?int
     {

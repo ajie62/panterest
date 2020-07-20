@@ -91,10 +91,12 @@ class PinsController extends AbstractController
     /**
      * @Route("/pins/{id<[0-9]+>}/delete", name="app_pins_delete", methods={"DELETE"})
      */
-    public function delete(Pin $pin)
+    public function delete(Request $request, Pin $pin)
     {
-        $this->em->remove($pin);
-        $this->em->flush();
+        if ($this->isCsrfTokenValid('pin_delete_' . $pin->getId(), $request->request->get('csrf_token'))) {
+            $this->em->remove($pin);
+            $this->em->flush();
+        }
 
         return $this->redirectToRoute('app_home');
     }
