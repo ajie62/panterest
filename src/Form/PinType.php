@@ -20,7 +20,7 @@ class PinType extends AbstractType
                 'required' => false,
                 'allow_delete' => true,
                 'download_uri' => false,
-                //'imagine_pattern' => '...',
+                'imagine_pattern' => 'squared_thumbnail_small',
             ])
             ->add('title', TextType::class)
             ->add('description', TextareaType::class)
